@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_excel(r"C:\Users\tyson\OneDrive\Desktop\Apr 2020 Act Rep.xlsx", parse_dates=["Transport Date"])
+df = pd.read_excel(r"C:\Users\ejin3\OneDrive\Desktop\Apr 2020 Act Rep.xlsx", parse_dates=["Transport Date"])
 pd.set_option("display.max_columns", None)
 df["Pick-up Location"].fillna("None", inplace=True)
 df["Mode"].fillna("None", inplace=True)
@@ -28,5 +28,8 @@ raw_report = df[[
     'Pnd->Cmp',
     'Total Delay Time'
     ]]
-
-raw_report.head(3)
+escorts = raw_report.groupby("Assigned To")
+escort_totals = escorts.size().sort_values(ascending=False)
+df_escort_totals = pd.DataFrame(escort_totals)
+print(df_escort_totals)
+# print(raw_report.head(3))

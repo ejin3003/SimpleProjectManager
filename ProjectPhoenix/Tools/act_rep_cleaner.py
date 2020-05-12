@@ -44,16 +44,19 @@ dates = raw_report.groupby('Transport Date')
 daily_totals = dates.size()
 df_daily_totals = pd.DataFrame(data=daily_totals)
 df_daily_totals.reset_index(inplace=True)
+df_daily_totals.columns = ["Date", "Daily Total"]
 
-# ax = sns.lineplot(x=df_daily_totals.index, y=0, data=df_daily_totals, markers=True)
-#
-# # Increases Graph Size
-# fig = plt.gcf()
-# fig.set_size_inches(16, 10)
-#
-# # Rotates x-ticks by 45 degrees
-# for item in ax.get_xticklabels():
-#     item.set_rotation(45)
-#
-# plt.show()
+plt.style.use("ggplot")
+
+ax = sns.lineplot(x="Date", y="Daily Total", data=df_daily_totals, markers=True)
+
+# Increases Graph Size
+fig = plt.gcf()
+fig.set_size_inches(16, 10)
+
+# Rotates x-ticks by 45 degrees
+for item in ax.get_xticklabels():
+    item.set_rotation(45)
+
+plt.show()
 

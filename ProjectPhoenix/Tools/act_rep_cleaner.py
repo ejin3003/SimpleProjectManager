@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
 
 df = pd.read_excel(r"C:\Users\ejin3\OneDrive\Desktop\Apr 2020 Act Rep.xlsx", parse_dates=["Transport Date"])
@@ -46,17 +47,37 @@ df_daily_totals = pd.DataFrame(data=daily_totals)
 df_daily_totals.reset_index(inplace=True)
 df_daily_totals.columns = ["Date", "Daily Total"]
 
-plt.style.use("ggplot")
-
-ax = sns.lineplot(x="Date", y="Daily Total", data=df_daily_totals, markers=True)
+x = df_daily_totals["Date"].to_list()
+y = df_daily_totals["Daily Total"].to_list()
 
 # Increases Graph Size
-fig = plt.gcf()
-fig.set_size_inches(16, 10)
+# fig = plt.gcf()
+# fig.set_size_inches(16, 10)
 
-# Rotates x-ticks by 45 degrees
-for item in ax.get_xticklabels():
-    item.set_rotation(45)
+plt.figure(figsize=(10, 6), dpi=300)
 
+plt.style.use("ggplot")
+plt.plot(x, y, label="Total Escorts", linewidth=2, marker=".", markersize=6)
+
+plt.title("Completed Central Trips for the Month of April", fontdict={"fontsize": 20})
+plt.xlabel("April 2020", fontdict={"fontsize": 14})
+plt.xticks(rotation=45)
+plt.ylabel("Total Trips", fontdict={"fontsize": 14})
+
+plt.legend()
 plt.show()
+
+
+# plt.style.use("ggplot")
+# ax = sns.lineplot(x="Date", y="Daily Total", data=df_daily_totals)
+#
+# # Increases Graph Size
+# fig = plt.gcf()
+# fig.set_size_inches(16, 10)
+#
+# # Rotates x-ticks by 45 degrees
+# for item in ax.get_xticklabels():
+#     item.set_rotation(45)
+#
+# plt.show()
 

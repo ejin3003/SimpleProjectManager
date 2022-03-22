@@ -1,0 +1,7 @@
+/SimpleProjectManager/venv/
+/venv/
+/venv library root/
+.env
+venv/
+.venv
+ENV/
